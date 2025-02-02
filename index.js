@@ -28,6 +28,8 @@ const faqSchema = new Schema({
 const FAQ = model('FAQ', faqSchema);
 
 // Routes
+
+// Get all FAQs
 app.get('/faqs', async (req, res) => {
   try {
     const faqs = await FAQ.find();
@@ -37,6 +39,7 @@ app.get('/faqs', async (req, res) => {
   }
 });
 
+// Create a new FAQ
 app.post('/faqs', async (req, res) => {
   try {
     const { question, answer } = req.body;
@@ -48,6 +51,7 @@ app.post('/faqs', async (req, res) => {
   }
 });
 
+// Update from a given ID
 app.put('/faqs/:id', async (req, res) => {
   try {
     const { question, answer } = req.body;
@@ -58,6 +62,7 @@ app.put('/faqs/:id', async (req, res) => {
   }
 });
 
+// Delete from a given ID
 app.delete('/faqs/:id', async (req, res) => {
   try {
     await FAQ.findByIdAndDelete(req.params.id);
